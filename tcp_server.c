@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 
 #define BUF_SIZE 1024
+
 #define Q_SIZE 5
 
 int main(int argc, char *argv[])
@@ -67,7 +68,7 @@ int main(int argc, char *argv[])
 		while((str_len=read(clnt_sock,message,BUF_SIZE))!=0)
 		{
 			write(clnt_sock,message,sizeof(message));
-			printf("in server msg from clnt %s\n",message);
+			printf("in server msg from clnt ::: %s\n",message);
 		}
 		close(clnt_sock);
 	}
