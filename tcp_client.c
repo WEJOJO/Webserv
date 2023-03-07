@@ -36,6 +36,10 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
+
+// test for clnt do not, server can wait till clnt req, and pop the queue
+// with this case, server stdout will connected with clnt one line only, cause queue on ready to read for clnt1(first req)
+////////////////////////////////////////////////////////////////////////////////////////////////
 	while(read_len==read(sock,&message[idx++],1))
 	{
 		if (str_len == -1)
@@ -47,6 +51,12 @@ int main(int argc, char *argv[])
 	}
 
 	printf("Msg from server %s \n", message);
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/// test for exectly finish by clnt
+	// write(sock,"Hello",6);
+
 	printf("Function read call count : %d \n",str_len);
 	close(sock);
 	return 0;
