@@ -48,21 +48,19 @@ int main(int argc, char *argv[])
 			break;
 
 		str_len = write(sock,message,strlen(message));
-		recv_len = 0;
-		while(recv_len < str_len)
+		recv_cnt = 0;
+		while(recv_cnt < str_len)
 		{
-			recv_cnt = read(sock, &message[recv_len],BUF_SIZE-1); //일단 그대로  따라해보고, recv_len++;로 변경해보는 걸로...
-			if (recv_cnt == -1) //
+			if (read(sock, &message[recv_cnt],1)==-1)/// changed for one by one
 			{
 				printf("err in sec while");
 				exit(1);
 			}
-			recv_len+=recv_cnt; ////
+			recv_cnt++; ////
 		}
-		message[recv_len] = 0; ////
+		message[recv_cnt] = 0; ////
 		printf("msg from server is :%s \n",message);
 	}
 	close(sock);
 	return 0;
 }
-
