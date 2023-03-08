@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	int sock;
 	struct sockaddr_in serv_addr;
 	char message[BUF_SIZE];
-	int str_len;
+	int str_len,recv_len,recv_cnt;
 	int idx = 0, read_len = 0;
 
 	if (argc!=3)
@@ -46,10 +46,21 @@ int main(int argc, char *argv[])
 		fgets(message, BUF_SIZE, stdin);
 		if (!strcmp("q\n", message) || !strcmp("Q\n",message))
 			break;
-		write(sock,message,strlen(message));
-		str_len = read(sock, message, BUF_SIZE - 1);
-		message[str_len]= 0;
-		printf("before msg from server is :%s \n",message);
+
+		str_len = write(sock,message,strlen(message));
+		recv_len = 0;
+		while(recv_len < str_len)
+		{
+			recv_cnt = read(sock, &message[recv_len],BUF_SIZE-1); //일단 그대로  따라해보고, recv_len++;로 변경해보는 걸로...
+			if (recv_cnt == -1) //
+			{
+				printf("err in sec while");
+				exit(1);
+			}
+			recv_len+=recv_cnt; ////
+		}
+		message[recv_len] = 0; ////
+		printf("msg from server is :%s \n",message);
 	}
 	close(sock);
 	return 0;

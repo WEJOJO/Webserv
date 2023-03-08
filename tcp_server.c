@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	clnt_addr_size = sizeof(clnt_addr_size); ///clnt addr size를 이이전전에  bind에서 사용하고 있다. 추측컨데 bind에서 사용할 때에는 저 값이 0이어야 하는 것인가? 혹은 주소를 넘기는 것이라 딱히 순서랑 상관 없는 것일지도?
+	clnt_addr_size = sizeof(clnt_addr);
 
 	for (i = 0; i < Q_SIZE; i++)
 	{
@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
 		while((str_len=read(clnt_sock,message,BUF_SIZE))!=0)
 		{
 			write(clnt_sock,message,str_len);
+			message[str_len] = 0;///added for printf message
 			printf("in server msg from clnt ::: %s\n",message);
 		}
 		close(clnt_sock);
