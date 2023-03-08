@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 		}
 		while((str_len=read(clnt_sock,message,BUF_SIZE))!=0)
 		{
-			write(clnt_sock,message,sizeof(message));
+			write(clnt_sock,message,str_len);
 			printf("in server msg from clnt ::: %s\n",message);
 		}
 		close(clnt_sock);
