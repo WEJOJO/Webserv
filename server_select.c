@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
                     else
                     {
                         //write(i, buf, str_len);
-                        send(i, "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 98\r\n\r\n<html><body><h1>Hello, World!</h1></body></html>", 128, 0);
+                        send(i, "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 129\r\n\r\n<html><body><h1>Hello, World!</h1></body></html>", 129, 0);
                     }
                 }
             }
