@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 
         if ((fd_num=select(fd_max+1,&cpy_reads,0,0,&timeout)) == -1)
         {
+            printf("==========\n");
             break;
         }
         if (fd_num == 0)
@@ -85,8 +86,9 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
+                        write(1, buf, sizeof(buf));
                         //write(i, buf, str_len);
-                        send(i, "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 129\r\n\r\n<html><body><h1>Hello, World!</h1></body></html>", 129, 0);
+                        send(i, "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 72\r\n\r\n<html><body><h1>Hello, World!\nthis is nhwang's page</h1></body></html>", 151, 0);
                     }
                 }
             }
