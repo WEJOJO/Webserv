@@ -1,12 +1,10 @@
 <?php
-echo "Hello, World!";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['Name'];
+    $age = $_POST['Age'];
+    echo "Name: " . $name . "<br>";
+    echo "Age: " . $age . "<br>";
+} else {
+    echo "POST request not received";
+}
 ?>
-
-
-
-
-/*
-	주석 처리?
-	cmd에서 -> "php -S 127.0.0.1:8000" 실행 시 보여지긴 함.
-	브라우저에서 -> "http://127.0.0.1:8000/index.php" 접속하여 확인
-*/
